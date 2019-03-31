@@ -12,7 +12,9 @@ import cv2
 import torch
 from torch.autograd import Variable
 from torchvision import models
+from os.path import dirname, abspath, join
 
+PROJECT_FILE_DIR = dirname(dirname(abspath(__file__)))
 
 def convert_to_grayscale(im_as_arr):
     """

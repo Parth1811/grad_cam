@@ -1,16 +1,16 @@
-# Convolutional Neural Network Visualizations 
+# Convolutional Neural Network Visualizations
 
-#This is fork of the following *[https://github.com/utkuozbulak/pytorch-cnn-visualizations](#repo) 
+#This is fork of the following [repo](https://github.com/utkuozbulak/pytorch-cnn-visualizations) from [Utku Ozbulak](https://github.com/utkuozbulak)
 
 **Note**: I removed cv2 dependencies and moved the repository towards PIL. A few things might be broken (although I tested all methods), I would appreciate if you could create an issue if something does not work.
 
 ## Implemented Techniques
-This repo contains following CNN visualization techniques implemented in Pytorch: 
+This repo contains following CNN visualization techniques implemented in Pytorch:
 
 * [Gradient visualization with vanilla backpropagation](#gradient-visualization)
 * [Gradient visualization with guided backpropagation](#gradient-visualization) [1]
 * [Gradient visualization with saliency maps](#gradient-visualization) [4]
-* [Gradient-weighted [3] class activation mapping](#gradient-visualization) [2] 
+* [Gradient-weighted [3] class activation mapping](#gradient-visualization) [2]
 * [Guided, gradient-weighted class activation mapping](#gradient-visualization) [3]
 * [Smooth grad](#smooth-grad) [8]
 * [CNN filter visualization](#convolutional-neural-network-filter-visualization) [9]
@@ -19,7 +19,7 @@ This repo contains following CNN visualization techniques implemented in Pytorch
 * [Class specific image generation](#class-specific-image-generation) [4]
 
  I moved following **Adversarial example generation** techniques [here](https://github.com/utkuozbulak/pytorch-cnn-adversarial-attacks) to separate visualizations from adversarial stuff.
- 
+
 	- Fast Gradient Sign, Untargeted [11]
 	- Fast Gradient Sign, Targeted [11]
 	- Gradient Ascent, Adversarial Images [7]
@@ -130,7 +130,7 @@ Below, are some sample results for each operation.
 Smooth grad is adding some Gaussian noise to the original image and calculating gradients multiple times and averaging the results [8]. There are two examples at the bottom which use _vanilla_ and _guided_ backpropagation to calculate the gradients. Number of images (_n_) to average over is selected as 50. _σ_ is shown at the bottom of the images.
 
 <table border=0 width="50px" >
-	<tbody> 
+	<tbody>
     <tr>		<td width="27%" align="center"> </td>
 			<td width="27%" align="center"> <strong>Vanilla Backprop</strong> </td>
 			<td width="27%" align="center"> </td>
@@ -145,7 +145,7 @@ Smooth grad is adding some Gaussian noise to the original image and calculating 
 
 
 <table border=0 width="50px" >
-	<tbody> 
+	<tbody>
     <tr>		<td width="27%" align="center"> </td>
 			<td width="27%" align="center"> <strong>Guided Backprop</strong> </td>
 			<td width="27%" align="center"> </td>
@@ -162,7 +162,7 @@ Smooth grad is adding some Gaussian noise to the original image and calculating 
 CNN filters can be visualized when we optimize the input image with respect to output of the specific convolution operation. For this example I used a pre-trained **VGG16**. Visualizations of layers start with basic color and direction filters at lower levels. As we approach towards the final layer the complexity of the filters also increase. If you employ external techniques like blurring, gradient clipping etc. you will probably produce better images.
 
 <table border=0 width="50px" >
-	<tbody> 
+	<tbody>
 		<tr>
 			<td width="19%" align="center"> Layer 2 <br /> (Conv 1-2)</td>
 			<td width="27%" align="center"> <img src="https://raw.githubusercontent.com/utkuozbulak/pytorch-cnn-visualizations/master/results/layer_visualizations/layer_vis_l2_f1.jpg"> </td>
@@ -190,10 +190,10 @@ CNN filters can be visualized when we optimize the input image with respect to o
 	</tbody>
 </table>
 
-Another way to visualize CNN layers is to to visualize activations for a specific input on a specific layer and filter. This was done in [1] Figure 3. Below example is obtained from layers/filters of VGG16 for the first image using guided backpropagation. The code for this opeations is in *layer_activation_with_guided_backprop.py*. The method is quite similar to guided backpropagation but instead of guiding the signal from the last layer and a specific target, it guides the signal from a specific layer and filter. 
+Another way to visualize CNN layers is to to visualize activations for a specific input on a specific layer and filter. This was done in [1] Figure 3. Below example is obtained from layers/filters of VGG16 for the first image using guided backpropagation. The code for this opeations is in *layer_activation_with_guided_backprop.py*. The method is quite similar to guided backpropagation but instead of guiding the signal from the last layer and a specific target, it guides the signal from a specific layer and filter.
 
 <table border=0 width="50px" >
-	<tbody> 
+	<tbody>
     <tr>		<td width="27%" align="center"> Input Image </td>
 			<td width="27%" align="center"> Layer Vis. (Filter=0)</td>
 			<td width="27%" align="center"> Filter Vis. (Layer=29)</td>
@@ -212,7 +212,7 @@ I think this technique is the most complex technique in this repository in terms
 
 
 <table border=0 width="50px" >
-	<tbody> 
+	<tbody>
     <tr>		<td width="27%" align="center"> Layer 0: <strong>Conv2d</strong> </td>
 			<td width="27%" align="center"> Layer 2: <strong>MaxPool2d</strong> </td>
 			<td width="27%" align="center"> Layer 4: <strong>ReLU</strong> </td>
@@ -225,7 +225,7 @@ I think this technique is the most complex technique in this repository in terms
 	</tbody>
 </table>
 <table border=0 width="50px" >
-	<tbody> 
+	<tbody>
     <tr>		<td width="27%" align="center"> Layer 7: <strong>ReLU</strong> </td>
 			<td width="27%" align="center"> Layer 9: <strong>ReLU</strong> </td>
 			<td width="27%" align="center"> Layer 12: <strong>MaxPool2d</strong> </td>
@@ -277,10 +277,10 @@ This operation produces different outputs based on the model and the applied reg
 	</tbody>
 </table>
 
-The samples below show the produced image with no regularization, l1 and l2 regularizations on target class: **flamingo** (130) to show the differences between regularization methods. These images are generated with a pretrained AlexNet. 
+The samples below show the produced image with no regularization, l1 and l2 regularizations on target class: **flamingo** (130) to show the differences between regularization methods. These images are generated with a pretrained AlexNet.
 
 <table border=0 width="50px" >
-	<tbody> 
+	<tbody>
     <tr>		<td width="27%" align="center"> No Regularization </td>
 			<td width="27%" align="center"> L1 Regularization </td>
 			<td width="27%" align="center"> L2 Regularization </td>
@@ -336,4 +336,3 @@ PIL >= 1.1.7
 [10] A. Mordvintsev, C. Olah, M. Tyka. *Inceptionism: Going Deeper into Neural Networks* https://research.googleblog.com/2015/06/inceptionism-going-deeper-into-neural.html
 
 [11] I. J. Goodfellow, J. Shlens, C. Szegedy. *Explaining and Harnessing Adversarial Examples* https://arxiv.org/abs/1412.6572
-
