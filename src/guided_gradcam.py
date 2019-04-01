@@ -27,7 +27,7 @@ def guided_grad_cam(grad_cam_mask, guided_backprop_mask):
 
 if __name__ == '__main__':
     # Get params
-    class_no=1
+    class_no=6
     image_no=84
     check_target_class=6
 

@@ -1,3 +1,4 @@
 data
 weights.pt
 model_struct.pt
+*.pyc
