@@ -1,13 +1,12 @@
 """
-Created on Thu Oct 23 11:27:15 2017
+This programs helps to test the grad_cam on different examples
 
-@author: Utku Ozbulak - github.com/utkuozbulak
+author: Dipesh Tamboli - https://github.com/Dipeshtamboli
+author: Parth Patil    - https://github.com/Parth1811
 """
-import numpy as np
 
-from misc_functions import (get_example_params,
-                            convert_to_grayscale,
-                            save_gradient_images)
+import numpy as np
+from misc_functions import (get_example_params, convert_to_grayscale, save_gradient_images)
 from gradcam import GradCam
 from guided_backprop import GuidedBackprop
 
@@ -27,7 +26,7 @@ def guided_grad_cam(grad_cam_mask, guided_backprop_mask):
 
 if __name__ == '__main__':
     # Get params
-    class_no=6
+    class_no=6                  #denseresidential
     image_no=84
     check_target_class=6
 

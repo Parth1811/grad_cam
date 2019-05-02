@@ -242,37 +242,31 @@ def get_example_params(class_no,image_no,check_target_class):
     "storagetanks" ,        # class_num =19
     "tenniscourt"]          # class_num =20
 
-    # class_no=8
-    # image_no=84
-    # check_target_class=8
-
     # Pick one of the examples
-    path_to_test_folder =  join(PROJECT_FILE_DIR, "data")
-    img_path  = join(path_to_test_folder, class_list[class_no], class_list[class_no], str(image_no)+".tif")
-    custom_path = join(PROJECT_FILE_DIR, "inputs/DNWRj2V.jpg")
-    img_path = custom_path
+    path_to_test_folder =  join(PROJECT_FILE_DIR, "data/Images")
+    img_path  = join(path_to_test_folder, class_list[class_no], class_list[class_no] + str(image_no)+".tif")
+    print img_path
+
+    # overide image path for testing
+    # custom_path = join(PROJECT_FILE_DIR, "inputs/DNWRj2V.jpg")
+    # img_path = custom_path
+
     target_class = check_target_class
-    file_name_to_export = img_path[img_path.rfind('/')+1:img_path.rfind('.')] +", tar_class=" + class_list[check_target_class]
+    file_name_to_export = img_path[img_path.rfind('/')+1:img_path.rfind('.')] +"__tar_class=" + class_list[check_target_class]
 
     # Read image
     original_image = Image.open(img_path).convert('RGB')
 
     # Process image
-    # cv2.imshow(original_image)
     prep_img = preprocess_image(original_image)
-    # cv2.imshow(prep_img)
-    # pretrained_model_old = models.alexnet(pretrained=True)
-    # print(str(pretrained_model_old))
 
     # Define model
     path_model = join(PROJECT_FILE_DIR, "model_struct.pt")
     path_weights = join(PROJECT_FILE_DIR, "weights.pt")
     checkpoint = torch.load(path_weights,map_location="cpu")
     pretrained_model = torch.load(path_model,map_location="cpu")
-    # pretrained_model = models.vgg16(pretrained=False)
     pretrained_model.load_state_dict(checkpoint)
-    # = torch.load(pretrained_model,path2)
-    # print(str(pretrained_model))
+
     return (original_image,
             prep_img,
             target_class,
